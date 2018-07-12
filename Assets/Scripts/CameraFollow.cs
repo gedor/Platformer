@@ -9,10 +9,23 @@ public class CameraFollow : MonoBehaviour {
 	public Transform target;
 	public float smoothSpeed;
 	public Vector3 offset;
+
+	//public bool inBounds;
+	private Vector3 minCamPos = new Vector3 (-2.35f,-13.25f, -10.0f);
+	private Vector3 maxCamPos = new Vector3 (20.0f,-4.0f, -10.0f);
+
+	
 	void FixedUpdate(){
 		Vector3 desiredPosition = target.position + offset;
 		Vector3 smoothedPosition = Vector3.Lerp(transform.position,desiredPosition,smoothSpeed);
 		transform.position = smoothedPosition;
+		
+
+		
+
+			transform.position = new Vector3(Mathf.Clamp(transform.position.x,minCamPos.x,maxCamPos.x),
+			Mathf.Clamp(transform.position.y,minCamPos.y,maxCamPos.y),
+			Mathf.Clamp(transform.position.z,minCamPos.z,maxCamPos.z));
 		
 	}
 }

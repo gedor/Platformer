@@ -8,6 +8,7 @@ public class PlayerMover1 : MonoBehaviour {
 	public float speed;
 	private float move;
 
+	private float moveJoy;
 	public float jumpVelocity = 5.0f;
 	public float fallMult = 5.5f;
 	public float lowJumpMult = 5.0f;
@@ -37,7 +38,7 @@ public class PlayerMover1 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		move = Input.GetAxisRaw("Horizontal");
-
+		
 
 	}
 	void FixedUpdate() {
@@ -51,13 +52,15 @@ public class PlayerMover1 : MonoBehaviour {
 		
 		rig.velocity = new Vector2 (move * speed,rig.velocity.y);
 		
+
 		playerAnim.SetFloat("Speed", Mathf.Abs(move));
 		
-		if(Input.GetButtonDown("Jump")){
+		if(Input.GetButtonDown("Fire1")){
 			
 			if(grounded == true && canJump == true){
 			rig.velocity = Vector2.up * jumpVelocity;
 			playerAnim.SetBool("Jumping",true);
+			
 			numbOfJumps += 1;
 			}
 			
@@ -73,7 +76,7 @@ public class PlayerMover1 : MonoBehaviour {
 
 			rig.velocity += Vector2.up*Physics2D.gravity.y*(fallMult-1)*Time.deltaTime;
 
-		}else if(rig.velocity.y > 0 && !Input.GetButton("Jump")){
+		}else if(rig.velocity.y > 0 && !Input.GetButton("Fire1")){
 			rig.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMult - 1) * Time.deltaTime;
 
 		}
