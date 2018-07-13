@@ -9,7 +9,8 @@ public class CursorMoveController : MonoBehaviour {
 		public Camera cam;
 		private float horizontal;
 		private float vertical;
-		//public float cursSpeed;
+		
+	//	public float cursSpeed;
 
 	// Use this for initialization
 	void Awake () {

@@ -886,6 +886,7 @@ MonoBehaviour:
     m_Bits: 256
   numbOfJumps: 0
   numbOfPossJumps: 1
+  teleporte: {fileID: 1910684358}
 --- !u!1 &708346954
 GameObject:
   m_ObjectHideFlags: 0
@@ -2565,6 +2566,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleTrigger: 0
+  plaMov: {fileID: 548810249}
+  plaAnim: {fileID: 0}
+  plaRig: {fileID: 0}
 --- !u!212 &1910684359
 SpriteRenderer:
   m_ObjectHideFlags: 0

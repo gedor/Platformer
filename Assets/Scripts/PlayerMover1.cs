@@ -27,6 +27,7 @@ public class PlayerMover1 : MonoBehaviour {
 	Rigidbody2D rig;
 	Animator playerAnim;
 
+	public Teleporter teleporte;
 	// Use this for initialization
 	void Awake() {
 		rig = GetComponent<Rigidbody2D>();
@@ -48,24 +49,25 @@ public class PlayerMover1 : MonoBehaviour {
 		numbOfJumps = 0;
         playerAnim.SetBool("Jumping", false);
     	}
+	if(teleporte.teleTrigger == false){
+		Move();
+	}else if(teleporte.teleTrigger == true){
 
-		
-		rig.velocity = new Vector2 (move * speed,rig.velocity.y);
-		
+				rig.velocity = Vector2.zero;
+				playerAnim.SetFloat("Speed",0.0f);
+	}
 
-		playerAnim.SetFloat("Speed", Mathf.Abs(move));
-		
+
+	if(teleporte.teleTrigger == false){	
 		if(Input.GetButtonDown("Fire1")){
 			
 			if(grounded == true && canJump == true){
-			rig.velocity = Vector2.up * jumpVelocity;
-			playerAnim.SetBool("Jumping",true);
-			
-			numbOfJumps += 1;
+			Jump();
 			}
 			
 		
 		}
+	}
 		if(numbOfJumps >= numbOfPossJumps){
 			canJump = false;
 			}
@@ -80,6 +82,8 @@ public class PlayerMover1 : MonoBehaviour {
 			rig.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMult - 1) * Time.deltaTime;
 
 		}
+
+		if(teleporte.teleTrigger == false){
 		if(move >0 && !facingRight){
 			Flip();
 
@@ -87,7 +91,7 @@ public class PlayerMover1 : MonoBehaviour {
 		else if(move < 0 && facingRight){
 			Flip();
 		}
-	
+		}
 			
 	}
 	void Flip(){
@@ -95,6 +99,19 @@ public class PlayerMover1 : MonoBehaviour {
 	Vector3 theScale = transform.localScale;
 	theScale.x *= -1;
 	transform.localScale = theScale;
+	}
+	void Move(){
+		rig.velocity = new Vector2 (move * speed,rig.velocity.y);
+		
+
+		playerAnim.SetFloat("Speed", Mathf.Abs(move));
+	}
+	void Jump(){
+
+		rig.velocity = Vector2.up * jumpVelocity;
+			playerAnim.SetBool("Jumping",true);
+			
+			numbOfJumps += 1;
 	}
 	
 }
