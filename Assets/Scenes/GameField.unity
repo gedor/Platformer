@@ -2567,8 +2567,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleTrigger: 0
   plaMov: {fileID: 548810249}
-  plaAnim: {fileID: 0}
-  plaRig: {fileID: 0}
 --- !u!212 &1910684359
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2665,6 +2663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tel: {fileID: 1910684358}
   cam: {fileID: 519420031}
+  cursSpeed: 10
 --- !u!1 &2134758803
 GameObject:
   m_ObjectHideFlags: 0
