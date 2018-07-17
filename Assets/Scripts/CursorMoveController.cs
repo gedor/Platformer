@@ -12,6 +12,8 @@ public class CursorMoveController : MonoBehaviour {
 		
 		public float cursSpeed;
 
+		private bool horiInUse;
+		private bool vertiInUse;
 	// Use this for initialization
 	void Awake () {
 		
@@ -22,10 +24,10 @@ public class CursorMoveController : MonoBehaviour {
 		
 	}
 	void FixedUpdate(){
-		horizontal = Input.GetAxis("Horizontal");
-		vertical = Input.GetAxis("Vertical");
+		horizontal = Input.GetAxisRaw("Horizontal");
+		vertical = Input.GetAxisRaw("Vertical");
 		Vector2 currCursPos = CursorControl.GetGlobalCursorPos();
-		Vector2 cursPos = new Vector2(currCursPos.x + horizontal * cursSpeed,currCursPos.y + vertical * cursSpeed  * -1.0f);
+		Vector2 cursPos = new Vector2(currCursPos.x + horizontal * cursSpeed,currCursPos.y + vertical * cursSpeed * -1.0f);
 		if(tel.teleTrigger == true){
 
 			CursorControl.SetGlobalCursorPos(cursPos);
