@@ -36,7 +36,7 @@ public class CursorMoveController : MonoBehaviour {
 
 			CursorControl.SetGlobalCursorPos(cursPos);
 			
-			cam.transform.position += new Vector3 (horizontal * Time.deltaTime * cursSpeed, vertical * Time.deltaTime * cursSpeed, -10.0f);
+			//cam.transform.position += new Vector3 (horizontal * Time.deltaTime * cursSpeed, vertical * Time.deltaTime * cursSpeed, -10.0f);
 		}
 	}
 }
