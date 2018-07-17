@@ -14,6 +14,7 @@ public class Teleporter : MonoBehaviour {
 	void Start () {
 		wantedMode = CursorLockMode.Locked;
 		Cursor.lockState = wantedMode;
+		Cursor.visible = false;
 	}
 	
 	// Update is called once per frame
@@ -26,6 +27,7 @@ public class Teleporter : MonoBehaviour {
 				
 				teleTrigger = true;
 				Cursor.lockState = CursorLockMode.None; 
+				Cursor.visible = true;
 				
 				
 
@@ -34,7 +36,7 @@ public class Teleporter : MonoBehaviour {
 		//Cursor.visible = false;
 		
 		Cursor.lockState = wantedMode;
-		
+		Cursor.visible = false;
 		}
 	}
 	private void OnTriggerExit2D(Collider2D other) {
@@ -42,5 +44,7 @@ public class Teleporter : MonoBehaviour {
 		//Cursor.visible = false;
 		
 		Cursor.lockState = wantedMode;
+		Cursor.visible = false;
+
 	}
 }

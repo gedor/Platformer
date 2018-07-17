@@ -47,34 +47,49 @@ public class CameraFollow : MonoBehaviour {
 	void MoveCam()
      {
          Vector3 camPos = transform.position;
-         if (Input.mousePosition.x > screenWidth - 30)
+         if (Input.mousePosition.x > screenWidth - 30 && Input.mousePosition.y > screenHeight - 30)
          {
              isCamMoving = true;
              camPos.x += speed * Time.deltaTime;
+			camPos.y += speed * Time.deltaTime;
+
          }
-         else if (Input.mousePosition.x < 30)
+         else if (Input.mousePosition.x < 30 && Input.mousePosition.y < 30)
          {
              isCamMoving = true;
              camPos.x -= speed*Time.deltaTime;
+			 camPos.y -= speed * Time.deltaTime;
          }
          
-         else if (Input.mousePosition.y > screenHeight - 30)
+         else if (Input.mousePosition.x > screenWidth - 30 && Input.mousePosition.y < 30)
          {
              isCamMoving = true;
-             camPos.y += speed*Time.deltaTime;
+             camPos.x += speed*Time.deltaTime;
+			 camPos.y -= speed * Time.deltaTime;
          }
-         else if (Input.mousePosition.y < 30)
+         else if (Input.mousePosition.x < 30 && Input.mousePosition.y > screenHeight - 30)
          {
              isCamMoving = true;
-             camPos.y -= speed * Time.deltaTime;
-         }else if(Input.mousePosition.x > screenWidth - 30 && Input.mousePosition.y > screenHeight - 30){
+			 camPos.x -= speed * Time.deltaTime;
+             camPos.y += speed * Time.deltaTime;
+
+         }else if(Input.mousePosition.x > screenWidth - 30){
 			isCamMoving = true;
 			camPos.x += speed * Time.deltaTime;
-			camPos.y += speed*Time.deltaTime;
-
-
 		 }
-         else
+		 else if(Input.mousePosition.x < 30){
+			 isCamMoving = true;
+			 camPos.x -= speed*Time.deltaTime;
+		 }else if(Input.mousePosition.y > screenHeight - 30){
+			isCamMoving = true;
+			camPos.y += speed * Time.deltaTime;
+		 }
+		 
+		 else if(Input.mousePosition.y < 30){
+			 isCamMoving = true;
+			 camPos.y -= speed*Time.deltaTime;
+		 }
+         else 
          {
              isCamMoving = false;
          }
