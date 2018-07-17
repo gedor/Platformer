@@ -14,17 +14,22 @@ public class CameraFollow : MonoBehaviour {
 
 	public Teleporter tele;
 	//public bool inBounds;
-	private Vector3 minCamPos = new Vector3 (-2.35f,-13.25f, -10.0f);
+	private Vector3 minCamPos = new Vector3 (-8.0f,-15.0f, -10.0f);
 	private Vector3 maxCamPos = new Vector3 (20.0f,-4.0f, -10.0f);
 
 	
+
+	void Awake(){
+
+		
+	}
 	void FixedUpdate(){
 		
-		
 		if(tele.teleTrigger == true){
-		screenPoint =Input.mousePosition;
-		screenPoint.z = 10.0f;
-		transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
+			
+		//screenPoint =Input.mousePosition;
+		//screenPoint.z = 10.0f;
+		//transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
 		}else{
 			Vector3 desiredPosition = target.position + offset;
 		Vector3 smoothedPosition = Vector3.Lerp(transform.position,desiredPosition,smoothSpeed);

@@ -14,6 +14,8 @@ public class CursorMoveController : MonoBehaviour {
 
 		private bool horiInUse;
 		private bool vertiInUse;
+
+		
 	// Use this for initialization
 	void Awake () {
 		
@@ -27,10 +29,14 @@ public class CursorMoveController : MonoBehaviour {
 		horizontal = Input.GetAxisRaw("Horizontal");
 		vertical = Input.GetAxisRaw("Vertical");
 		Vector2 currCursPos = CursorControl.GetGlobalCursorPos();
-		Vector2 cursPos = new Vector2(currCursPos.x + horizontal * cursSpeed,currCursPos.y + vertical * cursSpeed * -1.0f);
+
+		
+		Vector2 cursPos = new Vector2(currCursPos.x + horizontal *cursSpeed,currCursPos.y + vertical * cursSpeed * -1.0f);
 		if(tel.teleTrigger == true){
 
 			CursorControl.SetGlobalCursorPos(cursPos);
+			
+			cam.transform.position += new Vector3 (horizontal * Time.deltaTime * cursSpeed, vertical * Time.deltaTime * cursSpeed, -10.0f);
 		}
 	}
 }
