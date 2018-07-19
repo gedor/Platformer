@@ -9,6 +9,9 @@ public class Teleporter : MonoBehaviour {
 	public bool teleTrigger = false;
 	public PlayerMover1 plaMov;
 	
+	public Transform playerTran;
+	Vector3 mousPos;
+
 	
 	// Use this for initialization
 	void Start () {
@@ -20,6 +23,14 @@ public class Teleporter : MonoBehaviour {
 	// Update is called once per frame
 			void Update () {
 		this.transform.Rotate(Vector3.forward * 10.0f * Time.deltaTime);
+		if(teleTrigger == true){
+			if(Input.GetButtonDown("Fire1")){
+
+				StartCoroutine ("TeleportPlayer");
+			}
+			
+		}
+		Vector2 mousPos = Input.mousePosition;
 	}
 	private void OnTriggerStay2D(Collider2D other) {
 		if(Input.GetButtonDown("Fire2")){
@@ -46,5 +57,14 @@ public class Teleporter : MonoBehaviour {
 		Cursor.lockState = wantedMode;
 		Cursor.visible = false;
 
+	}
+	IEnumerator TeleportPlayer(){
+		
+		yield return new WaitForSeconds (1.0f);
+		teleTrigger = false;
+		Cursor.visible = false;
+		Cursor.lockState = wantedMode;
+		// playerTran.position = new Vector3 (Camera.main.ScreenToWorldPoint(CursorControl.GetGlobalCursorPos()).x,Camera.main.ScreenToWorldPoint(CursorControl.GetGlobalCursorPos()).y,0);
+		playerTran.position = new Vector3 (Camera.main.ScreenToWorldPoint(Input.mousePosition).x,Camera.main.ScreenToWorldPoint(Input.mousePosition).y,0);
 	}
 }

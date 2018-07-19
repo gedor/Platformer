@@ -8,6 +8,8 @@ public class PauseMenu : MonoBehaviour {
 
 	CursorLockMode wantedMode;
 	public Canvas pauseCanvas;
+	public Teleporter  tele;
+	public bool paused = false;
 	// Use this for initialization
 	void Awake() {
 		pauseCanvas.enabled = false;
@@ -28,31 +30,52 @@ public class PauseMenu : MonoBehaviour {
 			pauseCanvas.enabled = true;
 			Cursor.lockState = CursorLockMode.None; 
 			Cursor.visible = true;
+			paused = true;
 			Time.timeScale = 0.0f;
 			
 
 		}else if (pauseCanvas.enabled == true){
 			
+
+
+			if(tele.teleTrigger == false){
+				Time.timeScale = 1.0f;
 			Cursor.visible = false;
 			Cursor.lockState = wantedMode;
 			pauseCanvas.enabled = false;
-			Time.timeScale = 1.0f;
+			paused = false;
 			
-			
-			
-			
+			}
+			else if(tele.teleTrigger == true){
+				Time.timeScale = 1.0f;
+				Cursor.lockState = CursorLockMode.None; 
+				Cursor.visible = true;
+				paused = false;
+				pauseCanvas.enabled = false;
+				
+
+			}
 		}
 		}
 	}
 	public void ResumeGame(){
-		Cursor.lockState = wantedMode;
-		Cursor.visible = false;
-		pauseCanvas.enabled = false;
-		Time.timeScale = 1.0f;
-		
-		
-		
+				if(tele.teleTrigger == false){
+				Time.timeScale = 1.0f;
+			Cursor.visible = false;
+			Cursor.lockState = wantedMode;
+			pauseCanvas.enabled = false;
+			paused = false;
 			
+			}
+			else if(tele.teleTrigger == true){
+				Time.timeScale = 1.0f;
+				Cursor.lockState = CursorLockMode.None; 
+				Cursor.visible = true;
+				paused = false;
+				pauseCanvas.enabled = false;
+				
+
+			}
 	}
 	public void ExitGame(){
 		Application.Quit();

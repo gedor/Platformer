@@ -21,18 +21,20 @@ public class CameraFollow : MonoBehaviour {
 	private int screenHeight;
 	private bool isCamMoving;
 	private float speed = 5.0f;
+
+	
 	void Awake(){
 		screenHeight = Screen.height;
 		screenWidth = Screen.width;
+
 		
 	}
 	void FixedUpdate(){
 		
 		if(tele.teleTrigger == true){
 			MoveCam();
-		//screenPoint =Input.mousePosition;
-		//screenPoint.z = 10.0f;
-		//transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
+			
+		
 		}else{
 			Vector3 desiredPosition = target.position + offset;
 		Vector3 smoothedPosition = Vector3.Lerp(transform.position,desiredPosition,smoothSpeed);
