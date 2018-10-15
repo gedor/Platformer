@@ -1896,6 +1896,11 @@ MonoBehaviour:
   pauseCanvas: {fileID: 1597573571}
   tele: {fileID: 1910684358}
   paused: 0
+  cursorMode: 0
+  hotspotZero: {x: 0, y: 0}
+  cursorTexture: {fileID: 2800000, guid: 926f29e7a731030479111793415fad4c, type: 3}
+  cursorTele: {fileID: 2800000, guid: 92d963c4d3a1cc442b7b65f2cdc037ff, type: 3}
+  hotspot: {x: 0, y: 0}
 --- !u!114 &1597573569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2038,6 +2043,11 @@ MonoBehaviour:
   teleTrigger: 0
   plaMov: {fileID: 548810249}
   playerTran: {fileID: 548810244}
+  cursorMode: 0
+  cursorTele: {fileID: 2800000, guid: 92d963c4d3a1cc442b7b65f2cdc037ff, type: 3}
+  hotspot: {x: 0, y: 0}
+  hotspotZero: {x: 0, y: 0}
+  cursorTexture: {fileID: 2800000, guid: 926f29e7a731030479111793415fad4c, type: 3}
 --- !u!212 &1910684359
 SpriteRenderer:
   m_ObjectHideFlags: 0

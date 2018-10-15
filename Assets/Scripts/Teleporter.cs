@@ -12,7 +12,12 @@ public class Teleporter : MonoBehaviour {
 	public Transform playerTran;
 	Vector3 mousPos;
 
-	
+	public CursorMode cursorMode = CursorMode.Auto;
+	public Texture2D cursorTele;
+	public Vector2 hotspot;
+
+	public Vector2 hotspotZero = Vector2.zero;
+	public Texture2D cursorTexture;
 	// Use this for initialization
 	void Start () {
 		wantedMode = CursorLockMode.Locked;
@@ -23,6 +28,7 @@ public class Teleporter : MonoBehaviour {
 	// Update is called once per frame
 			void Update () {
 		this.transform.Rotate(Vector3.forward * 10.0f * Time.deltaTime);
+		hotspot = new Vector2 (cursorTele.width/2,cursorTele.height/2);
 		if(teleTrigger == true){
 			if(Input.GetButtonDown("Fire1")){
 
@@ -40,6 +46,7 @@ public class Teleporter : MonoBehaviour {
 				Cursor.lockState = CursorLockMode.None; 
 				Cursor.visible = true;
 				
+				Cursor.SetCursor(cursorTele,hotspot,cursorMode);
 				
 
 		}else if(Input.GetButtonDown("Fire3")){
@@ -48,6 +55,8 @@ public class Teleporter : MonoBehaviour {
 		
 		Cursor.lockState = wantedMode;
 		Cursor.visible = false;
+
+		Cursor.SetCursor(cursorTexture,hotspotZero,cursorMode);
 		}
 	}
 	private void OnTriggerExit2D(Collider2D other) {
@@ -56,6 +65,7 @@ public class Teleporter : MonoBehaviour {
 		
 		Cursor.lockState = wantedMode;
 		Cursor.visible = false;
+		Cursor.SetCursor(cursorTexture,hotspotZero,cursorMode);
 
 	}
 	IEnumerator TeleportPlayer(){
@@ -66,5 +76,6 @@ public class Teleporter : MonoBehaviour {
 		Cursor.lockState = wantedMode;
 		// playerTran.position = new Vector3 (Camera.main.ScreenToWorldPoint(CursorControl.GetGlobalCursorPos()).x,Camera.main.ScreenToWorldPoint(CursorControl.GetGlobalCursorPos()).y,0);
 		playerTran.position = new Vector3 (Camera.main.ScreenToWorldPoint(Input.mousePosition).x,Camera.main.ScreenToWorldPoint(Input.mousePosition).y,0);
+		Cursor.SetCursor(cursorTexture,hotspotZero,cursorMode);
 	}
 }
